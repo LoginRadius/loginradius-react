@@ -19,7 +19,7 @@ export interface NavBarProps {}
 const NavBar: React.FC<NavBarProps> = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
-  const { isAuthenticated, logout, loginWithPopup, isLoading } = useLRAuth();
+  const { isAuthenticated, logout, loginWithRedirect, isLoading } = useLRAuth();
   return (
     <div>
       <Navbar light color="light" expand="md">
@@ -63,7 +63,7 @@ const NavBar: React.FC<NavBarProps> = () => {
                       id="qsLoginBtn"
                       color="primary"
                       className="btn-margin"
-                      onClick={() => loginWithPopup()}
+                      onClick={() => loginWithRedirect()}
                     >
                       Log in
                     </Button>

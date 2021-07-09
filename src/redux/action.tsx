@@ -3,12 +3,6 @@ import { User } from "../LRClient";
 /**
  * The auth state which, when combined with the auth methods, make up the return object of the `useLRAuth` hook.
  */
-declare global {
-  // eslint-disable-next-line no-unused-vars
-  interface Window {
-    callMessage?: any;
-  }
-}
 export interface AuthState {
   error?: Error;
   isAuthenticated: boolean;
