@@ -18,11 +18,6 @@ export const runPopup = (config: PopupConfigOptions) => {
     // eslint-disable-next-line prefer-const
     let popupEventListener: EventListenerOrEventListenerObject;
 
-    if (typeof window.callMessage === "function") {
-      alert("CallMessage");
-      window.callMessage();
-    }
-
     const popupTimer = setInterval(() => {
       if (config.popup && config.popup.closed) {
         clearInterval(popupTimer);

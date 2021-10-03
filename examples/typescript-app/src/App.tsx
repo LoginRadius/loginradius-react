@@ -1,12 +1,12 @@
 import React from "react";
-import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Container } from "reactstrap";
 import "./App.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
+import ExternalApi from "./containers/ExternalApi";
 import Home from "./containers/Home";
 import Profile from "./containers/Profile";
-import ExternalApi from "./containers/ExternalApi";
 
 const App = () => {
   return (
