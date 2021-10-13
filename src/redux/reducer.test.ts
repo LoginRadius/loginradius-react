@@ -71,4 +71,21 @@ describe("test reducer", () => {
     });
     expect(state).toEqual({ ...mockState, user: mockActionUser });
   });
+
+  test("should un-authenticate user on logout on LOGOUT action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const state = reducer(mockState, {
+      type: "LOGOUT",
+    });
+    expect(state).toEqual({
+      ...mockState,
+      isAuthenticated: false,
+      user: undefined,
+    });
+  });
 });
