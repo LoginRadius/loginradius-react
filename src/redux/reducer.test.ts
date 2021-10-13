@@ -136,4 +136,42 @@ describe("test reducer", () => {
       error: mockActionError,
     });
   });
+
+  test("should reset state on INITIALISED action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const state = reducer(mockState, {
+      type: "INITIALISED",
+    });
+    expect(state).toEqual({
+      ...mockState,
+      isLoading: false,
+      isAuthenticated: false,
+      error: undefined,
+      user: undefined,
+    });
+  });
+
+  test("should reset state on HANDLE_REDIRECT_COMPLETE action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const state = reducer(mockState, {
+      type: "HANDLE_REDIRECT_COMPLETE",
+    });
+    expect(state).toEqual({
+      ...mockState,
+      isLoading: false,
+      isAuthenticated: false,
+      error: undefined,
+      user: undefined,
+    });
+  });
 });
