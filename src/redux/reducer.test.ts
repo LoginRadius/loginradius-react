@@ -72,6 +72,30 @@ describe("test reducer", () => {
     expect(state).toEqual({ ...mockState, user: mockActionUser });
   });
 
+  test("should complete login on LOGIN_POPUP_COMPLETE action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const mockActionUser = {
+      ...mockUser,
+      ModifiedDate: "different-modified-date",
+      id: "mock-different-id",
+    };
+    const state = reducer(mockState, {
+      type: "LOGIN_POPUP_COMPLETE",
+      user: mockActionUser,
+    });
+    expect(state).toEqual({
+      ...mockState,
+      isLoading: false,
+      error: undefined,
+      user: mockActionUser,
+    });
+  });
+
   test("should un-authenticate user on logout on LOGOUT action", () => {
     const mockState: AuthState = {
       isAuthenticated: true,
