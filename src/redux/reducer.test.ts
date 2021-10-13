@@ -52,4 +52,23 @@ describe("test reducer", () => {
     });
     expect(state).toEqual(mockState);
   });
+
+  test("should return state with new user if user modified date is different on GET_ACCESS_TOKEN_COMPLETE action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const mockActionUser = {
+      ...mockUser,
+      ModifiedDate: "different-modified-date",
+      id: "mock-different-id",
+    };
+    const state = reducer(mockState, {
+      type: "GET_ACCESS_TOKEN_COMPLETE",
+      user: mockActionUser,
+    });
+    expect(state).toEqual({ ...mockState, user: mockActionUser });
+  });
 });
