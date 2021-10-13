@@ -88,4 +88,28 @@ describe("test reducer", () => {
       user: undefined,
     });
   });
+
+  test("should set action error on ERROR action", () => {
+    const mockState: AuthState = {
+      isAuthenticated: true,
+      isLoading: false,
+      user: mockUser,
+    };
+
+    const mockActionError = {
+      name: "mock-name",
+      message: "mock-message",
+      stack: "mock-stack",
+    };
+
+    const state = reducer(mockState, {
+      type: "ERROR",
+      error: mockActionError,
+    });
+    expect(state).toEqual({
+      ...mockState,
+      isLoading: false,
+      error: mockActionError,
+    });
+  });
 });
