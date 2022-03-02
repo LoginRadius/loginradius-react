@@ -9,6 +9,7 @@ export interface LRConfigOptions {
   appName: string;
   apiKey: string;
   redirectUri: string;
+  customDomain?: string;
 }
 
 export interface PopupConfigOptions {
@@ -61,13 +62,16 @@ export default class LRClient {
    * @return { Promise<TokenInfo>} Returns weather the use is logged in or not.
    */
   public async getAccessTokenSilently(): Promise<TokenInfo> {
-    return await fetch(
-      `https://${this.options.appName}.hub.loginradius.com/ssologin/login`,
-      {
-        method: "get",
-        credentials: "include",
-      }
-    )
+    let url;
+    if (this.options.customDomain) {
+      url = `https://${this.options.customDomain}/ssologin/login`;
+    } else {
+      url = `https://${this.options.appName}.hub.loginradius.com/ssologin/login`;
+    }
+    return await fetch(url, {
+      method: "get",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => data);
   }
@@ -77,16 +81,21 @@ export default class LRClient {
    * @param {string} returnTo - Specify the path where you want user to be redirect after login
    * @return {string}
    */
-  public buildLoginUrl(returnTo: string = "") {
+  public buildLoginUrl(returnTo: string = "/") {
     const { appName, redirectUri } = this.options;
-    return `https://${appName}.hub.loginradius.com/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+
+    if (this.options.customDomain) {
+      return `https://${this.options.customDomain}/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+    } else {
+      return `https://${appName}.hub.loginradius.com/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+    }
   }
 
   /**
    * This Function will be used to Login the using Redirect Method
    * @param {string} returnTo - Specify the path where you want user to be redirect after login
    */
-  public async loginWithRedirect(returnTo: string = "") {
+  public async loginWithRedirect(returnTo: string) {
     const url = this.buildLoginUrl(returnTo);
     window.location.assign(url);
   }
@@ -101,7 +110,9 @@ export default class LRClient {
       config.popup = openPopup("");
     }
 
-    const url = this.buildLoginUrl();
+    let url = this.buildLoginUrl();
+
+    url += "&loginType=popup";
 
     config.popup.location.href = url;
 
@@ -154,16 +165,20 @@ export default class LRClient {
    * @param { string } returnTo - The URL where your application should navigate after logout
    * @return {string} A URL String
    */
-  public buildLogoutUrl(returnTo: string = window.location.origin): string {
-    const { appName } = this.options;
-    return `https://${appName}.hub.loginradius.com/auth.aspx?action=logout&return_url=${returnTo}`;
+  public buildLogoutUrl(returnTo: string = "/"): string {
+    const { appName, redirectUri } = this.options;
+    if (this.options.customDomain) {
+      return `https://${this.options.customDomain}/auth.aspx?action=logout&return_url=${redirectUri}${returnTo}`;
+    } else {
+      return `https://${appName}.hub.loginradius.com/auth.aspx?action=logout&return_url=${redirectUri}${returnTo}`;
+    }
   }
 
   /**
    * Use to Logout the user
    * @param {string} returnTo - The URL where your application should navigate after logout
    */
-  public async logout(returnTo: string = window.location.origin) {
+  public async logout(returnTo?: string) {
     const tokenData = await this.getAccessTokenSilently();
     if (!tokenData.isauthenticated) {
       return;

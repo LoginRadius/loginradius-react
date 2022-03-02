@@ -73,7 +73,7 @@ function App() {
       </div>
     );
   } else {
-    return <button onClick={loginWithRedirect}>Log in</button>;
+    return <button onClick={() => loginWithRedirect()}>Log in</button>;
   }
 }
 
@@ -134,6 +134,16 @@ const CallAPI = () => {
 
 export default CallAPI;
 ```
+
+### Using loginWithPopup
+
+To implement `loginWithPopup` functionality in your app you need to perform following steps:
+
+1. Open your LoginRadius Dashboard and navigate to `Auth Page (IDX) -> Themes -> Customize -> Switch to Advance Editor`.
+2. In the right side you will find the tab called `Custom JS`, expand and select `Add New`.
+3. A popup will open where you need to enter this url in the `Url` tab - https://hosted-pages.lrinternal.com/Themes/sdk/default-auth-react-sdk.js and click **Confirm**
+4. This URL contains the script which will help to close the popup after the authentication is done.
+5. Finally Click on **Save** and then add `loginWithPopup` method in your application.
 
 ## Contributing
 

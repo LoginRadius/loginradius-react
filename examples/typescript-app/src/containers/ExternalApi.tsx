@@ -19,7 +19,7 @@ export const ExternalApiComponent = () => {
         ...state,
         error: null,
       });
-    } catch (error) {
+    } catch (error: any) {
       setState({
         ...state,
         error: error.error,
@@ -45,7 +45,7 @@ export const ExternalApiComponent = () => {
         showResult: true,
         apiMessage: responseData,
       });
-    } catch (error) {
+    } catch (error: any) {
       setState({
         ...state,
         error: error.error,

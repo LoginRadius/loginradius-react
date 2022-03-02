@@ -14,6 +14,7 @@ export interface LRAuthProps {
   appName: string;
   apiKey: string;
   redirectUri: string;
+  customDomain?: string;
   onRedirectCallback?: (tokenInfo?: TokenInfo) => void;
 }
 

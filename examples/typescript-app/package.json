@@ -4,9 +4,10 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^5.0.1",
-    "loginradius-react": "link:../../",
-    "react": "link:../../node_modules/react",
-    "react-dom": "link:../../node_modules/react-dom",
+    "highlight.js": "^11.0.1",
+    "loginradius-react": "file:../..",
+    "react": "file:../../node_modules/react",
+    "react-dom": "file:../../node_modules/react-dom",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "reactstrap": "^8.9.0",
@@ -18,8 +19,8 @@
     "@testing-library/user-event": "^7.1.2",
     "@types/jest": "^24.0.0",
     "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
+    "@types/react": "file:../../node_modules/@types/react",
+    "@types/react-dom": "file:../../node_modules/@types/react-dom",
     "@types/react-router-dom": "^5.1.7"
   },
   "scripts": {
