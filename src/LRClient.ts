@@ -9,6 +9,7 @@ export interface LRConfigOptions {
   appName: string;
   apiKey: string;
   redirectUri: string;
+  customDomain?: string;
 }
 
 export interface PopupConfigOptions {
@@ -61,13 +62,16 @@ export default class LRClient {
    * @return { Promise<TokenInfo>} Returns weather the use is logged in or not.
    */
   public async getAccessTokenSilently(): Promise<TokenInfo> {
-    return await fetch(
-      `https://${this.options.appName}.hub.loginradius.com/ssologin/login`,
-      {
-        method: "get",
-        credentials: "include",
-      }
-    )
+    let url;
+    if (this.options.customDomain) {
+      url = `https://${this.options.customDomain}/ssologin/login`;
+    } else {
+      url = `https://${this.options.appName}.hub.loginradius.com/ssologin/login`;
+    }
+    return await fetch(url, {
+      method: "get",
+      credentials: "include",
+    })
       .then((res) => res.json())
       .then((data) => data);
   }
@@ -79,7 +83,12 @@ export default class LRClient {
    */
   public buildLoginUrl(returnTo: string = "/") {
     const { appName, redirectUri } = this.options;
-    return `https://${appName}.hub.loginradius.com/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+
+    if (this.options.customDomain) {
+      return `https://${this.options.customDomain}/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+    } else {
+      return `https://${appName}.hub.loginradius.com/auth.aspx?action=login&return_url=${redirectUri}${returnTo}`;
+    }
   }
 
   /**
@@ -158,7 +167,11 @@ export default class LRClient {
    */
   public buildLogoutUrl(returnTo: string = "/"): string {
     const { appName, redirectUri } = this.options;
-    return `https://${appName}.hub.loginradius.com/auth.aspx?action=logout&return_url=${redirectUri}${returnTo}`;
+    if (this.options.customDomain) {
+      return `https://${this.options.customDomain}/auth.aspx?action=logout&return_url=${redirectUri}${returnTo}`;
+    } else {
+      return `https://${appName}.hub.loginradius.com/auth.aspx?action=logout&return_url=${redirectUri}${returnTo}`;
+    }
   }
 
   /**

@@ -1,7 +1,7 @@
 {
   "author": "LoginRadius",
   "name": "loginradius-react",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "types": "build/index.d.ts",
