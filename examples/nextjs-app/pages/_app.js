@@ -10,8 +10,8 @@ function MyApp({ Component, pageProps }) {
         <title>Loginradius Next</title>
       </Head>
       <LRAuthProvider
-        appName="nefejames1"
-        apiKey="909cf7d5-5332-4071-ad98-43501a128d82"
+        appName={process.env.NEXT_PUBLIC_LR_APP_NAME}
+        apiKey={process.env.NEXT_PUBLIC_API_KEY}
         redirectUri={"http://localhost:3000/"}
       >
         <ChakraProvider>

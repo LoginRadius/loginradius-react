@@ -2,5 +2,11 @@ node_modules/
 .cache/
 public
 .history/
-.env.*
+
 .DS_Store
+
+
+# local env files
+.env
+.env.development
+.env.production
