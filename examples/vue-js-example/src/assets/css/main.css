@@ -1,0 +1,130 @@
+
+  
+  body {
+    background: #2554FF !important;
+    min-height: 100vh;
+    display: flex;
+    font-weight: 400;
+    box-sizing: border-box;
+  }
+  
+  body,
+  html,
+  .App,
+  .lr-template,
+  .vertical-center {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  
+  .navbar-light {
+    background-color: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    box-sizing: border-box;
+  }
+  
+  .vertical-center {
+    display: flex;
+    text-align: left;
+    justify-content: center;
+    flex-direction: column;    
+    box-sizing: border-box;
+  }
+  
+  .inner-block {
+    width: 450px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    transition: all .3s;
+    box-sizing: border-box;
+  }
+  
+  .vertical-center .loginradius--form-element-content:focus {
+    border-color: #2554FF;
+    box-shadow: none;
+    
+  }
+  
+  .vertical-center h3 {
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+  }
+  
+  label {
+    font-weight: 500;
+    box-sizing: border-box;
+  }
+  
+  .forgot-password,
+  .forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-top: 10px;
+    color: #7a7a7a;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .forgot-password a {
+    color: #2554FF;
+    box-sizing: border-box;
+  }
+  
+  .social-icons {
+    text-align: center;
+    font-family: "Open Sans";
+    font-weight: 300;
+    font-size: 1.5em;
+    color: #222222;
+    box-sizing: border-box;
+  }
+  
+  .social-icons ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  .social-icons ul li {
+    display: inline-block;
+    zoom: 1;
+    width: 65px;
+    vertical-align: middle;
+    border: 1px solid #e3e8f9;
+    font-size: 15px;
+    height: 40px;
+    line-height: 40px;
+    margin-right: 5px;
+    background: #f4f6ff;
+    box-sizing: border-box;
+  }
+  
+  .social-icons ul li a {
+    display: block;
+    font-size: 1.4em;
+    margin: 0 5px;
+    text-decoration: none;
+    box-sizing: border-box;
+  }
+  .social-icons ul li a i {
+    -webkit-transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -o-transition: all 0.2s ease-in;
+    -ms-transition: all 0.2s ease-in;
+    transition: all 0.2s ease-in;
+    box-sizing: border-box;
+  }
+  
+  .social-icons ul li a:focus i,
+  .social-icons ul li a:active i {
+    transition: none;
+    color: #222222;
+    box-sizing: border-box;
+  }
